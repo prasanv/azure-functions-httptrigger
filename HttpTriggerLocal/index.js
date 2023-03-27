@@ -1,10 +1,5 @@
 module.exports = async function (context, req) {
-  context.log("JavaScript HTTP trigger function processed a request.");
-
-  const version = (req.body && req.body.version) || new Date().getTime();
-
   const contentful = await import("contentful");
-  // import { Block, Inline, BLOCKS, INLINES } from "@contentful/rich-text-types";
   const richTextReactRenderer = await import(
     "@contentful/rich-text-react-renderer"
   );
@@ -26,6 +21,7 @@ module.exports = async function (context, req) {
       host: process.env.CONTENTFUL_HOST,
     });
 
+    const version = (req.body && req.body.version) || new Date().getTime();
     const DEFAULT_LOCALE = "en-US";
     const AppLocales = ["en-US"];
 
