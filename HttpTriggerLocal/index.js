@@ -1,4 +1,5 @@
 module.exports = async function (context, req) {
+  const version = (req.body && req.body.version) || new Date().getTime();
   const contentful = await import("contentful");
   const richTextReactRenderer = await import(
     "@contentful/rich-text-react-renderer"
@@ -21,7 +22,6 @@ module.exports = async function (context, req) {
       host: process.env.CONTENTFUL_HOST,
     });
 
-    const version = (req.body && req.body.version) || new Date().getTime();
     const DEFAULT_LOCALE = "en-US";
     const AppLocales = ["en-US"];
 
